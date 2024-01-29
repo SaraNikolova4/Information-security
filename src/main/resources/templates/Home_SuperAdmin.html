@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeSuperAdmin</title>
+    <link rel="stylesheet" type="text/css" href="AllPage.css">
+</head>
+<body>
+<div>
+   <h2>Welcome! Super Admin</h2>
+<!--    tuka da napravam nesto za sho moze da pravi korisnik a sho pravi korisnik-->
+    <div>
+        <!-- PlayersController.showAdd -->
+        <a href="/players/add" class="add-item">
+            Add new player
+        </a>
+    </div>
+    <table>
+        <tr>
+            <th class="col">Player name</th>
+            <th class="col">Biography</th>
+            <th class="col">Points Per Game</th>
+            <th class="col">Votes</th>
+            <th class="col">Actions</th>
+        </tr>
+        <!-- For each player you should have one <tr> like below -->
+        <tr class="item" th:each="player : ${playerlist}">
+            <td class="col" th:text="${player.getName()}"></td>
+            <td class="col" th:text="${player.getBio()}"></td>
+            <td class="col" th:text="${player.getPointsPerGame()}"></td>
+            <td class="col" th:text="${player.getVotes()}"></td>
+            <td class="buttom">
+                <!-- PlayersController.delete -->
+                <form method="post" th:action="@{'/players/{id}/delete' (id=${player.getId()})}">
+                    <button type="submit" class="delete-item">Delete</button>
+                </form>
+                <!-- PlayersController.showEdit -->
+                <a th:href="@{'/players/{id}/edit' (id=${player.getId()})}" class="edit-item">Edit</a>
+                <!-- PlayersController.vote -->
+                <form method="post" th:action="@{'/players/{id}/vote' (id=${player.getId()})}">
+                    <button type="submit" class="like-item">Vote for Player</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{'/users'}" class="edit-item">Edit other user</a>
+    <div>
+        <ul id="nav">
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

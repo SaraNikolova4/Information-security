@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="AllPage.css">
+</head>
+<body>
+<form method="post" th:action="@{'/edit/{id}/save' (id=${user.getId()})}">
+    <div>
+        <label for="name">Name</label>
+        <input type="text"
+               id="name"
+               name="name"
+               th:value="${user.getName()}"
+               required>
+    </div>
+    <div>
+        <label for="bio">Email</label>
+        <input type="text"
+               id="bio"
+               name="email"
+               th:value="${user.getEmail()}"
+               required>
+    </div>
+    <div>
+        <select name="role">
+            <option th:each="r : ${role}" th:text="${r.name()}"
+                            th:value="${r}"></option>
+        </select>
+
+    </div>
+    <button id="submit" type="submit">Submit</button>
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="AllPage.css">
+</head>
+<body>
+<div>
+  <h2>Welcome! User</h2>
+  <!--    tuka da napravam nesto za sho moze da pravi korisnik a sho pravi korisnik-->
+  <div>
+    <!-- PlayersController.showAdd -->
+  </div>
+  <table>
+    <tr>
+      <th>Player name</th>
+      <th>Biography</th>
+      <th>Points Per Game</th>
+      <th>Votes for MVP</th>
+      <th>Actions</th>
+    </tr>
+    <!-- For each player you should have one <tr> like below -->
+    <tr class="item" th:each="player : ${playerlist}">
+      <td th:text="${player.getName()}">[player.name]</td>
+      <td th:text="${player.getBio()}">[player.bio]</td>
+      <td th:text="${player.getPointsPerGame()}">[player.pointsPerGame]</td>
+      <td th:text="${player.getVotes()}">[player.votes]</td>
+      <td>
+        <form method="post" th:action="@{'/players/{id}/vote' (id=${player.getId()})}">
+          <button type="submit" class="like-item">Vote for Player</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+  <div>
+    <ul id="nav">
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+</body>
+</html>

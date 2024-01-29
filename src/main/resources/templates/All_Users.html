@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="AllPage.css">
+</head>
+<body>
+<table>
+    <tr>
+        <th class="col">Name</th>
+        <th class="col">Surname</th>
+        <th class="col">Email</th>
+        <th class="col">Role</th>
+        <th class="col">Actions</th>
+    </tr>
+    <!-- For each player you should have one <tr> like below -->
+    <tr class="item" th:each="user : ${userlist}">
+        <td class="col" th:text="${user.getName()}"></td>
+        <td class="col" th:text="${user.getSurname()}"></td>
+        <td class="col" th:text="${user.getEmail()}"></td>
+        <td class="col" th:text="${user.getRole()}"></td>
+        <td>
+            <form method="post" th:action="@{'/users/{id}/edit' (id=${user.getId()})}">
+                <button type="submit" class="like-item">Edit Role</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
